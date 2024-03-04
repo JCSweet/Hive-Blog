@@ -1,0 +1,150 @@
+<!-- Header -->
+<%- include("partials/header.ejs"); %>
+<section id="main">
+  <div id="blogContainer">
+    <div id="blogForm">
+        <form action="/submit" method="post">
+            <input type="text" name="author" placeholder="Your Name" required />
+            <input type="text" name="content" placeholder="Let's Hear It" required />
+            <input class="primaryBtn" type="submit" value="Post It!" />
+            </form>
+    </div>
+    <div id="blogPosts">
+      <ul>
+        <% for( let i = 0; i < blogPost.length; i++ ) { %>
+        <li>
+          <div class="post">
+            <div class="postHeader">
+              <h3><%= blogPost[i].author %> writes...</h3>
+              <div class="postLikes">
+                <h3><%= blogPost[i].likes %></h3>
+                <form action="/addLike" method="post">
+                  <input class="emojiBtn" type="submit" value="🍯" />
+                  <input
+                    type="hidden"
+                    name="postID"
+                    value="<%= blogPost[i].id %>"
+                  />
+                </form>
+              </div>
+            </div>
+            <div class="postContent">
+              <p><%= blogPost[i].content %></p>
+            </div>
+            <div class="postOptions">
+              <div class="postOptionEditField">
+                <form
+                  action="/edit"
+                  method="post"
+                  id="editForm-toggleEditBtn-<%= blogPost[i].id %>"
+                  class="hideToggleEdit postOptionsForm"
+                >
+                  <input
+                    type="hidden"
+                    name="postID"
+                    value="<%= blogPost[i].id %>"
+                  />
+                  <input type="text" name="editedPost" />
+                  <input
+                    class="primaryBtn"
+                    type="submit"
+                    name="Edit"
+                    value="Update"
+                  />
+                </form>
+                <form
+                  action="/submitComment"
+                  method="post"
+                  id="commentForm-toggleCommentBtn-<%= blogPost[i].id %>"
+                  class="hideToggleEdit postOptionsForm"
+                >
+                  <input
+                    type="hidden"
+                    name="postID"
+                    value="<%= blogPost[i].id %>"
+                  />
+                  <input
+                    type="text"
+                    name="commentAuthor"
+                    placeholder="Your Name"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="commentContent"
+                    placeholder="Your Comment..."
+                    required
+                  />
+                  <input class="primaryBtn" type="submit" value="Comment" />
+                </form>
+              </div>
+              <div class="postOptionButtons">
+                <div class="commentBtn">
+                  <button
+                    class="toggleCommentBtn primaryBtn"
+                    id="toggleCommentBtn-<%= blogPost[i].id %>"
+                  >
+                  <i class="fa-regular fa-comment fa-lg"></i>
+                  </button>
+                </div>
+                <div class="edit_deleteBtn">
+                  <button
+                    class="toggleEditBtn primaryBtn"
+                    id="toggleEditBtn-<%= blogPost[i].id %>"
+                  >
+                  <i class="fa-regular fa-pen-to-square fa-lg"></i>
+                  </button>
+                  <form action="/delete" method="post">
+                    <button class="secondaryBtn" type="submit"><i class="fa-regular fa-trash-can fa-lg"></i>
+                    </button>
+                    <input
+                      type="hidden"
+                      name="postID"
+                      value="<%= blogPost[i].id %>"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="commentSection">
+            <ul>
+              <% blogPost[i].comments.forEach(comment =>  { %>
+              <li>
+                <div class="comment">
+                  <div class="postHeader">
+                    <h4>comment from <%= comment.commentAuthor %></h4>
+                  </div>
+                  <div class="postContent">
+                    <p><%= comment.commentContent %></p>
+                  </div>
+                  <div class="postOptions">
+                    <div class="commentOptionButton">
+                      <form action="/deleteComment" method="post">
+                        <button class="secondaryBtn" type="submit"><i class="fa-regular fa-trash-can fa-lg"></i>
+                        <input
+                          type="hidden"
+                          name="postID"
+                          value="<%= blogPost[i].id %>"
+                        />
+                        <input
+                          type="hidden"
+                          name="commentID"
+                          value="<%= comment.commentID %>"
+                        />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <% })%>
+            </ul>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- Footer -->
+<%- include("partials/footer.ejs"); %>

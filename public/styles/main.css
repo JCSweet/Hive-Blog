@@ -1,0 +1,257 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(140, 196, 198);
+  color: darkcyan;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0 0 0;
+    
+}
+h1,h2, h3, h4, p {
+    margin: 0;
+}
+h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+footer {
+  display: flex;
+  justify-content: center;
+}
+#blogContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+/* Global Form Styling  */
+input[type="text"] {
+  color: darkcyan;
+  border-bottom-color: darkcyan;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.009375em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  align-self: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 16px 6px;
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 4px 4px 0 0;
+  background: #dbdbdb;
+  height: 56px;
+}
+input[type="text"] :hover {
+  border-bottom-color: rgb(0, 113, 113);
+  background: #bababa;
+}
+input[type="text"] :focus {
+  border-color: darkcyan;
+}
+/* Global Button Styling  */
+.primaryBtn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 0 16px;
+  border-radius: 4px;
+  color: #fff;
+  background: rgb(0, 113, 113);
+  line-height: 1.15;
+  font-size: 14px;
+  height: 36px;
+  word-spacing: 0px;
+  letter-spacing: 0.0892857143em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  text-align: center;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.secondaryBtn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 0 15px;
+  border-radius: 4px;
+  color: rgb(0, 113, 113);
+  background: transparent;
+  line-height: 1.15;
+  font-size: 14px;
+  height: 36px;
+  word-spacing: 0px;
+  letter-spacing: 0.0892857143em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid rgb(0, 113, 113);
+  text-align: center;
+  transition: background 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emojiBtn {
+    display: inline-block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+}
+
+/* Input Form */
+#blogForm {
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  background-color: rgb(140, 196, 198);
+  padding: 20px;
+  /* margin: 0 20px; */
+}
+#blogForm > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid darkcyan;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 10px 8px 0px darkcyan;
+  
+}
+/* Blog Posts  */
+#blogPosts {
+    padding: 20px;
+}
+ul {
+  padding: 0;
+}
+ul > li {
+  list-style: none;
+}
+.post, .comment {
+  border: 1px solid darkcyan;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 40px 0;
+  box-shadow: 10px 8px 0px darkcyan;
+  min-width: 174px;
+}
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin: 10px 0;
+}
+.postLikes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.postContent {
+    text-align: left;
+    padding: 10px 20px 30px 10px;
+  }
+.postOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  
+}
+.postOptionsForm {
+  display: flex;
+  flex-direction: column;
+}
+.postOptionButtons,
+.postOptionButtons > .edit_deleteBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 10px;
+}
+.commentOptionButton {
+    display: flex;
+    justify-content: flex-end;
+}
+.edit_deleteBtn {
+    gap: 15px;
+}
+.hideToggleEdit {
+  display: none;
+}
+/* Comments section  */
+.commentSection > ul > li {
+    list-style: "🐝";
+    list-style-position: outside;
+    padding-left: 20px;
+    margin-left: 30px;
+  }
+
+
+@media (min-width: 500px) {
+    #main {
+        margin: 0 20px;
+    }
+    header {
+        flex-direction: row;
+        gap: 10px;
+        align-items: baseline;
+        justify-content: center;
+    }
+    .commentSection > ul > li {
+        padding-left: 40px;
+        margin-left: 120px;
+      }
+      .postContent {
+        padding: 10px 40px;
+      } 
+}
+@media (min-width: 1024px) {
+    #blogContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 160px;
+      }
+      #blogForm {
+        width: 40%;
+        position: sticky;
+        float: left;
+        top: calc(5%);
+      }
+}
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+    #blogContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+      }
+  }
+
+
