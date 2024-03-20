@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/6d3aafdcde.js" crossorigin="anonymous"></script>
 <script>
-// Show or Hide Exercise Instructions 
+// Edit / Update a blog post 
 let editHidden = true;
   $( ".toggleEditBtn" ).on( "click", function() {
     const id = $(this).attr("id");
@@ -27,6 +27,29 @@ let editHidden = true;
         $("#" + id).removeClass("secondaryBtn");
     }
   });
+
+  // Comment on a blog post 
+let commentHidden = true;
+  $( ".toggleCommentBtn" ).on( "click", function() {
+    const id = $(this).attr("id");
+    if (commentHidden) {
+        // Show comment form
+        $("#commentForm-" + id).removeClass("hideToggleEdit");
+        commentHidden = false;
+        $("#" + id).html("Cancel");
+        $("#" + id).removeClass("primaryBtn");
+        $("#" + id).addClass("secondaryBtn");
+    } else if (!commentHidden) {
+        // Hide comment form
+        $("#commentForm-" + id).addClass("hideToggleEdit");
+        commentHidden = true;
+        $("#" + id).html('<i class="fa-regular fa-comment fa-lg"></i>');
+        $("#" + id).addClass("primaryBtn");
+        $("#" + id).removeClass("secondaryBtn");
+    }
+  });
+
+
 </script>
 </body>
 </html>
