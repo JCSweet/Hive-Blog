@@ -133,13 +133,13 @@ const blogPosts = [
     comments: [
       {
         commentID: uuidv4(),
-        commentAuthor: "Jordan",
-        commentContent: "...Is this thing on?",
+        commentAuthor: "🏴‍☠️",
+        commentContent: "Yarrrrr",
       },
       {
         commentID: uuidv4(),
-        commentAuthor: "🏴‍☠️",
-        commentContent: "Yarrrrr",
+        commentAuthor: "Jordan",
+        commentContent: "...Is this thing on?",
       },
     ],
   },
