@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 const port = process.env.PORT;
+// const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,10 +18,11 @@ function newBlogPost(req) {
     id: uuidv4(),
     author: req.author,
     content: req.content,
-    likes: 1,
+    likes: 0,
     comments: [],
   };
-  blogPosts.push(addPost);
+  // blogPosts.push(addPost);
+  blogPosts.unshift(addPost);
 //   console.log(blogPosts);
 }
 
@@ -33,7 +35,8 @@ function newBlogPostComment(req) {
     commentContent: req.commentContent,
   };
   const idx = blogPosts.findIndex((item) => item.id === postID);
-  blogPosts[idx].comments.push(addComment);
+  // blogPosts[idx].comments.push(addComment);
+  blogPosts[idx].comments.unshift(addComment);
 //   console.log(blogPosts[idx].comments);
 }
 
@@ -111,33 +114,34 @@ const blogPosts = [
   {
     id: uuidv4(),
     author: "Jordan",
-    content: "hello thar mateys!",
-    likes: 1,
-    comments: [
-      {
-        commentID: uuidv4(),
-        commentAuthor: "Rocky",
-        commentContent: "Maow 😸",
-      },
-      {
-        commentID: uuidv4(),
-        commentAuthor: "Tigie",
-        commentContent: "Weeeeeowwww 🙀",
-      },
-    ],
-  },
-  {
-    id: uuidv4(),
-    author: "Jordan",
     content:
       "who can tell me the best way to clean kitty 🤮 out of the carpet?",
     likes: 3,
     comments: [
       {
         commentID: uuidv4(),
-        commentAuthor: "Emily",
+        commentAuthor: "🙀",
         commentContent: "😬",
       },
     ],
   },
+  {
+    id: uuidv4(),
+    author: "Jordan",
+    content: "Hello thar mateys!",
+    likes: 1,
+    comments: [
+      {
+        commentID: uuidv4(),
+        commentAuthor: "Jordan",
+        commentContent: "...Is this thing on?",
+      },
+      {
+        commentID: uuidv4(),
+        commentAuthor: "🏴‍☠️",
+        commentContent: "Yarrrrr",
+      },
+    ],
+  },
+  
 ];
