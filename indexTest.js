@@ -1,5 +1,6 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
+import { checkBlogPosts } from './database.js'
 
 const app = express();
 // const port = process.env.PORT;
@@ -9,7 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const blogPosts = await checkBlogPosts();
   res.render("index.ejs", { blogPost: blogPosts });
 });
 
@@ -111,39 +113,41 @@ app.listen(port, (req, res) => {
 });
 
 
+let blogPosts = [];
 
-const blogPosts = [
-  {
-    id: uuidv4(),
-    author: "Jordan",
-    content:
-      "who can tell me the best way to clean kitty 🤮 out of the carpet?",
-    likes: 3,
-    comments: [
-      {
-        commentID: uuidv4(),
-        commentAuthor: "🙀",
-        commentContent: "😬",
-      },
-    ],
-  },
-  {
-    id: uuidv4(),
-    author: "Jordan",
-    content: "Hello thar mateys!",
-    likes: 1,
-    comments: [
-      {
-        commentID: uuidv4(),
-        commentAuthor: "🏴‍☠️",
-        commentContent: "Yarrrrr",
-      },
-      {
-        commentID: uuidv4(),
-        commentAuthor: "Jordan",
-        commentContent: "...Is this thing on?",
-      },
-    ],
-  },
+
+// const blogPosts = [
+//   {
+//     id: uuidv4(),
+//     author: "Jordan",
+//     content:
+//       "who can tell me the best way to clean kitty 🤮 out of the carpet?",
+//     likes: 3,
+//     comments: [
+//       {
+//         commentID: uuidv4(),
+//         commentAuthor: "🙀",
+//         commentContent: "😬",
+//       },
+//     ],
+//   },
+//   {
+//     id: uuidv4(),
+//     author: "Jordan",
+//     content: "Hello thar mateys!",
+//     likes: 1,
+//     comments: [
+//       {
+//         commentID: uuidv4(),
+//         commentAuthor: "🏴‍☠️",
+//         commentContent: "Yarrrrr",
+//       },
+//       {
+//         commentID: uuidv4(),
+//         commentAuthor: "Jordan",
+//         commentContent: "...Is this thing on?",
+//       },
+//     ],
+//   },
   
-];
+// ];
